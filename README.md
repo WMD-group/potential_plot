@@ -1,20 +1,28 @@
 Potential-plot
+====================
+A python script to takes GULP input file and plot the Buckingham and Coulomb potentials, as well as the total potential, on a single graph. 
 
-Takes GULP input file and plots Buckingham potenital, coulombic interaction and total potential on a single plot. 
+Requirements
+------------
+Python
 
-Current status
+Current Status
+------------
 - Reads specified gulp file 
 - Defults with GULP.gin 
 - Plots the Buckingham potential and corresponding coulombic interaction on same plot along with the total potential
   for the specified interaction.
 - Saves plots as eps files, named after the atoms involved in that potential
 
-
-Excecution:
-
+Execution 
+------------
 python potentials.py -f file_name
 
+Short-term goals
+------------
+- To add support for the Lennard-Jones potential
 
-Short-term goals:
+Disclaimer
+----------
+This file is not affiliated with *GULP*. Feel free to use and modify, but do so at your own risk.
 
-To add Lennard potential to plot
