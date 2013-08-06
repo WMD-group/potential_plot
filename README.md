@@ -10,9 +10,11 @@ Current status
 - Saves plots as eps files, named after the atoms involved in that potential
 
 
-Excecution
+Excecution:
+
 python potentials.py -f file_name
 
 
-Short-term goals
+Short-term goals:
+
 To add Lennard potential to plot
