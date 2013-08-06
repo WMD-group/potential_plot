@@ -1,4 +1,5 @@
 Potential-plot
+
 Takes GULP input file and plots Buckingham potenital, coulombic interaction and total potential on a single plot. 
 
 Current status
