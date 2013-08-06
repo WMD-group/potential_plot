@@ -8,11 +8,10 @@ Python
 
 Current Status
 ------------
-- Reads specified gulp file 
-- Defults with GULP.gin 
-- Plots the Buckingham potential and corresponding coulombic interaction on same plot along with the total potential
-  for the specified interaction.
-- Saves plots as eps files, named after the atoms involved in that potential
+- Reads specified gulp input file 
+- Defaults to GULP.gin 
+- Plots the Buckingham potential and corresponding Coulombic interaction on same graph along with the total potential for the specified interaction
+- Saves plots as .eps files, named after the atoms involved in that potential
 
 Execution 
 ------------
