@@ -90,7 +90,7 @@ for i in buckinghams:
 	plt.axis([0.00, 5.00, -100, 100])
 	plt.xlabel('Interatomic distance, r', fontsize = 16)
 	plt.ylabel('Potential Energy, eV', fontsize = 16)
-	plt.title("%s" % (str(i[0] + "-" + i[2])), fontsize = 18)
+	plt.title("%s" % (str(i[0] + " (" + i[1] + ")" + " - " + i[2] + " (" + i[1] + ")")), fontsize = 18)
 	xticklines = getp(gca(), 'xticklines')
 	yticklines = getp(gca(), 'yticklines')
 	xgridlines = getp(gca(), 'xgridlines')
