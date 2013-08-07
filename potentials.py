@@ -22,7 +22,16 @@ def coulomb_pot(q1, q2, cut):
 		coul[x, 1] = (q1*q2)/(x*0.01)
 	return coul
 
-#specify input file
+def lennard_pot(A, B, cut):
+	# Lennard potential
+	array_size = int(cut/0.01)
+	lenn = np.zeros(shape = (array_size, 2))
+	for x in range (1, array_size):
+		lenn[x, 0] = x*0.01
+		lenn[x, 1] = A/((x*0.01)**12) - B/((x*0.01)**6)
+	return lenn
+
+# specify input file
 parser = OptionParser()
 parser.add_option("-f", "--file",
                   action = "store", type = "string", dest = "file", default = "GULP.gin",
@@ -37,6 +46,7 @@ f.close()
 
 buckinghams = []
 coulomb = []
+lennard = []
 # Start reading lines
 for line in lines:
 	 inp = line.split()
@@ -48,10 +58,10 @@ for line in lines:
 		coulomb.append(inp)
 	 elif len(inp) == 3 and inp[1] == "shel":
 		coulomb.append(inp)
+	 elif len(inp) == 10:
+		lennard.append(inp)
 
-file_index = 0
 for i in buckinghams:
-	file_index = file_index + 1
 	buck = buck_pot(float(i[4]), float(i[5]), float(i[6]), float(i[8])) 
 	for j in coulomb:
 		if j[0] == i[0] and j[1] == i[1]:
@@ -59,15 +69,28 @@ for i in buckinghams:
 		if j[0] == i[2] and j[1] == i[3]:
 			q2 = j[2]
 	coul = coulomb_pot(float(q1), float(q2), float(i[8]))
-	total_pot = np.add(buck,coul)
-	plt.plot(buck[1:,0],buck[1:,1], label = 'Buckingham potential')
+	for k in lennard:
+		if k[0] == i[0] and k[2] == i[2]:
+			A = k[4]
+			B = k[5]
+		# in case element order is reversed in input file
+		elif k[2] == i[0] and k[0] == i[2]:
+			A = k[4]
+			B = k[5]
+	
+	lenn = lennard_pot(float(A), float(B), float(i[8]))
+	total_pot = np.add(buck,coul,lenn)
+	
+	
+	plt.plot(buck[1:, 0],buck[1:, 1], label = 'Buckingham potential')
 	plt.plot(coul[1:, 0], coul [1:, 1], label = 'Coulombic interaction')
+	plt.plot(lenn[1:, 0], lenn[1:, 1], label = 'Lennard potential')
 	plt.plot(buck[1:, 0], total_pot[1:, 1], label = 'Total potential')
-	plt.legend(('Buckingham potential', 'Coulombic interaction', 'Total potential'))
+	plt.legend(('Buckingham potential', 'Coulombic interaction', 'Lennard potential', 'Total potential'))
 	plt.axis([0.00, 5.00, -100, 100])
 	plt.xlabel('Interatomic distance, r', fontsize = 16)
 	plt.ylabel('Potential Energy, eV', fontsize = 16)
-	plt.title("%s" % (str(i[0] + i[2])), fontsize = 18)
+	plt.title("%s" % (str(i[0] + "-" + i[2])), fontsize = 18)
 	xticklines = getp(gca(), 'xticklines')
 	yticklines = getp(gca(), 'yticklines')
 	xgridlines = getp(gca(), 'xgridlines')
