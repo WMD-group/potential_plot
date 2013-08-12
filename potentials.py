@@ -72,19 +72,18 @@ for i in buckinghams:
 	for k in lennard:
 		if k[0] == i[0] and k[2] == i[2]:
 			A = k[4]
-			B = k[5]
+                        B = k[5]
 		# in case element order is reversed in input file
 		elif k[2] == i[0] and k[0] == i[2]:
 			A = k[4]
 			B = k[5]
-	
-	lenn = lennard_pot(float(A), float(B), float(i[8]))
-	total_pot = np.add(buck,coul,lenn)
-	
+        lenn_j = lennard_pot(float(A), float(B), float(i[8]))
+        #total_pot = np.add(buck,coul,lenn_j)
+	total_pot = buck+coul+lenn_j
 	
 	plt.plot(buck[1:, 0],buck[1:, 1], label = 'Buckingham potential')
 	plt.plot(coul[1:, 0], coul [1:, 1], label = 'Coulombic interaction')
-	plt.plot(lenn[1:, 0], lenn[1:, 1], label = 'Lennard potential')
+	plt.plot(lenn_j[1:, 0], lenn_j[1:, 1], label = 'Lennard potential')
 	plt.plot(buck[1:, 0], total_pot[1:, 1], label = 'Total potential')
 	plt.legend(('Buckingham potential', 'Coulombic interaction', 'Lennard potential', 'Total potential'))
 	plt.axis([0.00, 5.00, -100, 100])
