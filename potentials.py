@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
@@ -44,6 +46,8 @@ f = open(file,"r")
 lines = f.readlines()
 f.close()
 
+A = 0
+B = 0
 buckinghams = []
 coulomb = []
 lennard = []
@@ -108,7 +112,3 @@ for i in buckinghams:
 	plt.grid(True)
 	plt.savefig('%s.eps' % (str(i[0] + i[2])))
 	plt.show()
-	
-
-
-	
