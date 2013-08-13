@@ -21,8 +21,8 @@ def coulomb_pot(q1, q2, cut):
 	coul = np.zeros(shape = (array_size, 2))
 	for x in range (1, array_size):
 		coul[x, 0] = x*0.01
-		#covert Hartree to eV
-		coul[x, 1] = 27.211*(q1*q2)/(x*0.01)
+		#covert Hartree to eV and Amstrom to Bohr
+		coul[x, 1] = 27.211396132*(q1*q2)/(x*0.01*1.889725989)
 	return coul
 
 def lennard_pot(A, B, cut):
