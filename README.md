@@ -1,4 +1,4 @@
-Potential-plot
+Potential plot
 ====================
 A python script to takes GULP input file and plot the Buckingham and Coulomb potentials, as well as the total potential, on a single graph. 
 
@@ -24,4 +24,3 @@ Short-term goals
 Disclaimer
 ----------
 This file is not affiliated with *GULP*. Feel free to use and modify, but do so at your own risk.
-
